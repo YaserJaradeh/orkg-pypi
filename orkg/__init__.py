@@ -1,5 +1,3 @@
-
-
 import logging
 
 try:  # Python 2.7+
