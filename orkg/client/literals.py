@@ -1,4 +1,5 @@
-from .utils import NamespacedClient, query_params, dict_to_url_params
+from orkg.utils import NamespacedClient, query_params, dict_to_url_params
+from orkg.out import OrkgResponse
 
 
 class LiteralsClient(NamespacedClient):
@@ -6,7 +7,7 @@ class LiteralsClient(NamespacedClient):
     def by_id(self, id):
         self.client.backend._append_slash = True
         response = self.client.backend.literals(id).GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("q", "exact")
     def get(self, params=None):
@@ -16,7 +17,7 @@ class LiteralsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.literals.GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("id", "label")
     def add(self, params=None):
@@ -25,7 +26,7 @@ class LiteralsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.literals.POST(json=params)
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("label")
     def update(self, id, params=None):
@@ -36,7 +37,7 @@ class LiteralsClient(NamespacedClient):
                 raise ValueError("the provided id is not in the graph")
             self.client.backend._append_slash = True
             response = self.client.backend.literals(id).PUT(json=params)
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     def exists(self, id):
         return self.by_id(id)[0] == 200

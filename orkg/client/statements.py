@@ -1,4 +1,5 @@
-from .utils import NamespacedClient, query_params, dict_to_url_params
+from orkg.utils import NamespacedClient, query_params, dict_to_url_params
+from orkg.out import OrkgResponse
 
 
 class StatementsClient(NamespacedClient):
@@ -6,7 +7,7 @@ class StatementsClient(NamespacedClient):
     def by_id(self, id):
         self.client.backend._append_slash = True
         response = self.client.backend.statements(id).GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("page", "items", "sortBy", "desc")
     def get(self, params=None):
@@ -16,7 +17,7 @@ class StatementsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.statements.GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("page", "items", "sortBy", "desc")
     def get_by_subject(self, subject_id, params=None):
@@ -26,7 +27,7 @@ class StatementsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.statements.subject(subject_id).GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("page", "items", "sortBy", "desc")
     def get_by_predicate(self, predicate_id, params=None):
@@ -36,7 +37,7 @@ class StatementsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.statements.predicate(predicate_id).GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("page", "items", "sortBy", "desc")
     def get_by_object(self, object_id, params=None):
@@ -46,7 +47,7 @@ class StatementsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.statements.object(object_id).GET()
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("subject_id", "predicate_id", "object")
     def add(self, params=None):
@@ -55,7 +56,7 @@ class StatementsClient(NamespacedClient):
         else:
             self.client.backend._append_slash = True
             response = self.client.backend.statements.POST(json=params)
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     @query_params("subject_id", "predicate_id", "object_id")
     def update(self, id, params=None):
@@ -66,7 +67,7 @@ class StatementsClient(NamespacedClient):
                 raise ValueError("the provided id is not in the graph")
             self.client.backend._append_slash = True
             response = self.client.backend.statements(id).PUT(json=params)
-        return response.status_code, response.json()
+        return OrkgResponse(response)
 
     def exists(self, id):
         return self.by_id(id)[0] == 200
