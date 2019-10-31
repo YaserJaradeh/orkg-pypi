@@ -1,6 +1,8 @@
 import hammock
 from .resources import ResourcesClient
 from .predicates import PredicatesClient
+from .classes import ClassesClient
+from .literals import LiteralsClient
 
 
 class ORKG(object):
@@ -12,3 +14,5 @@ class ORKG(object):
         self.backend: hammock.Hammock = hammock.Hammock(self.host).api
         self.resources = ResourcesClient(self)
         self.predicates = PredicatesClient(self)
+        self.classes = ClassesClient(self)
+        self.literals = LiteralsClient(self)
