@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from datetime import date, datetime
 from functools import wraps
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urlencode
 
 # parts of URL to be omitted
 SKIP_IN_PATH = (None, "", b"", [], ())
@@ -81,3 +81,12 @@ def query_params(*query_params):
         return _wrapped
 
     return _wrapper
+
+
+def dict_to_url_params(params):
+    return "?%s" % urlencode(params)
+
+
+class NamespacedClient(object):
+    def __init__(self, client):
+        self.client = client
