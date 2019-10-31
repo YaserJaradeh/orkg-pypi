@@ -1,5 +1,6 @@
 import hammock
 from .resources import ResourcesClient
+from .predicates import PredicatesClient
 
 
 class ORKG(object):
@@ -10,3 +11,4 @@ class ORKG(object):
         self.host = host if host is not None else 'http://127.0.0.1:8000'
         self.backend: hammock.Hammock = hammock.Hammock(self.host).api
         self.resources = ResourcesClient(self)
+        self.predicates = PredicatesClient(self)
