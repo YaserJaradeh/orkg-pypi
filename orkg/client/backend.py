@@ -3,6 +3,7 @@ from .resources import ResourcesClient
 from .predicates import PredicatesClient
 from .classes import ClassesClient
 from .literals import LiteralsClient
+from .stats import StatsClient
 
 
 class ORKG(object):
@@ -16,3 +17,4 @@ class ORKG(object):
         self.predicates = PredicatesClient(self)
         self.classes = ClassesClient(self)
         self.literals = LiteralsClient(self)
+        self.stats = StatsClient(self)
