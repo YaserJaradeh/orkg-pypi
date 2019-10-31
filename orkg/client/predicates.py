@@ -8,7 +8,7 @@ class PredicatesClient(NamespacedClient):
         response = self.client.backend.predicates(id).GET()
         return response.status_code, response.json()
 
-    @query_params("q", "exact", "page", "items", "sortBy", "exclude", "desc")
+    @query_params("q", "exact", "page", "items", "sortBy", "desc")
     def get(self, params=None):
         if len(params) > 0:
             self.client.backend._append_slash = False
