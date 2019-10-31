@@ -4,6 +4,7 @@ from .predicates import PredicatesClient
 from .classes import ClassesClient
 from .literals import LiteralsClient
 from .stats import StatsClient
+from .statements import StatementsClient
 
 
 class ORKG(object):
@@ -18,3 +19,7 @@ class ORKG(object):
         self.classes = ClassesClient(self)
         self.literals = LiteralsClient(self)
         self.stats = StatsClient(self)
+        self.statements = StatementsClient(self)
+
+    def ping(self):
+        pass  # TODO: see how to ping ORKG host to know if it is alive
