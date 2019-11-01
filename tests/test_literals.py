@@ -28,9 +28,9 @@ class TestLiterals(TestCase):
         self.assertEqual(res.content['label'], label)
 
     def test_update(self):
-        res = self.orkg.literals.add(label="Coco predicate")
+        res = self.orkg.literals.add(label="ORKG")
         self.assertTrue(res.succeeded)
-        label = "Test predicate"
+        label = "Open Research Knowledge Graph"
         res = self.orkg.literals.update(id=res.content['id'], label=label)
         self.assertTrue(res.succeeded)
         res = self.orkg.literals.by_id(res.content['id'])

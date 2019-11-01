@@ -10,7 +10,7 @@ class ClassesClient(NamespacedClient):
         return OrkgResponse(response)
 
     @query_params("q", "exact")
-    def get(self, params=None):
+    def get_all(self, params=None):
         if len(params) > 0:
             self.client.backend._append_slash = False
             response = self.client.backend.classes.GET(dict_to_url_params(params))
@@ -20,13 +20,13 @@ class ClassesClient(NamespacedClient):
         return OrkgResponse(response)
 
     @query_params("page", "items", "sortBy", "desc")
-    def get_resource_by_class(self, class_name, params=None):
+    def get_resource_by_class(self, class_id, params=None):
         if len(params) > 0:
             self.client.backend._append_slash = False
-            response = self.client.backend.classes(class_name).resources.GET(dict_to_url_params(params))
+            response = self.client.backend.classes(class_id).resources.GET(dict_to_url_params(params))
         else:
             self.client.backend._append_slash = True
-            response = self.client.backend.classes(class_name).resources.GET()
+            response = self.client.backend.classes(class_id).resources.GET()
         return OrkgResponse(response)
 
     @query_params("id", "label", "uri")
