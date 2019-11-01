@@ -7,7 +7,7 @@ class OrkgResponse(object):
 
     def __init__(self, response):
         self.status_code = response.status_code
-        self.content = response.json()
+        self.content = response.json() if len(response.content) > 0 else response.content
         self.url = response.url
 
     def __repr__(self):
