@@ -5,6 +5,7 @@ from .classes import ClassesClient
 from .literals import LiteralsClient
 from .stats import StatsClient
 from .statements import StatementsClient
+from .papers import PapersClient
 
 
 class ORKG(object):
@@ -20,6 +21,7 @@ class ORKG(object):
         self.literals = LiteralsClient(self)
         self.stats = StatsClient(self)
         self.statements = StatementsClient(self)
+        self.papers = PapersClient(self)
 
     def ping(self):
         pass  # TODO: see how to ping ORKG host to know if it is alive
