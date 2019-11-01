@@ -9,3 +9,9 @@ class OrkgResponse(object):
         self.status_code = response.status_code
         self.content = response.json()
         self.url = response.url
+
+    def __repr__(self):
+        return "%s %s" % ("(Success)" if self.succeeded else "(Fail)", self.content)
+
+    def __str__(self):
+        return self.content
