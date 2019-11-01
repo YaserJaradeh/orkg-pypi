@@ -3,6 +3,9 @@ from orkg import ORKG
 
 
 class TestResources(TestCase):
+    """
+    Some test scenarios might need to be adjusted to the content of the running ORKG instance
+    """
 
     def test_by_id(self):
         orkg = ORKG()
