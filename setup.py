@@ -3,13 +3,13 @@ from distutils.core import setup
 setup(
   name='orkg',
   packages=find_packages(),
-  version='0.1.2',
+  version='0.2',
   license='MIT',
   description='Python wrapper for the Open Research Knowledge Graph (ORKG) API',
   author='Mohamad Yaser Jaradeh',
   author_email='jaradeh@l3s.de',
   url='http://orkg.org/about',
-  download_url='https://github.com/YaserJaradeh/orkg-pypi/archive/0.1.tar.gz',
+  download_url='https://github.com/YaserJaradeh/orkg-pypi/archive/0.2.tar.gz',
   keywords=['ORKG', 'Scholarly communication', 'API wrapper'],
   install_requires=[
           'hammock',
