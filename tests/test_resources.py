@@ -24,3 +24,21 @@ class TestResources(TestCase):
         res = orkg.resources.get(items=30)
         self.assertTrue(res.succeeded)
         self.assertEqual(len(res.content), 30)
+
+    def test_add(self):
+        orkg = ORKG()
+        label = "test"
+        res = orkg.resources.add(label=label)
+        self.assertTrue(res.succeeded)
+        self.assertEqual(res.content['label'], label)
+
+    def test_update(self):
+        orkg = ORKG()
+        res = orkg.resources.add(label="Coco")
+        self.assertTrue(res.succeeded)
+        label = "test"
+        res = orkg.resources.update(id=res.content['id'], label=label)
+        self.assertTrue(res.succeeded)
+        res = orkg.resources.by_id(res.content['id'])
+        self.assertTrue(res.succeeded)
+        self.assertEqual(res.content['label'], label)
