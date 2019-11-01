@@ -10,7 +10,7 @@ class LiteralsClient(NamespacedClient):
         return OrkgResponse(response)
 
     @query_params("q", "exact")
-    def get(self, params=None):
+    def get_all(self, params=None):
         if len(params) > 0:
             self.client.backend._append_slash = False
             response = self.client.backend.literals.GET(dict_to_url_params(params))
