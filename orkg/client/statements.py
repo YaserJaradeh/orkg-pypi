@@ -49,12 +49,13 @@ class StatementsClient(NamespacedClient):
             response = self.client.backend.statements.object(object_id).GET()
         return OrkgResponse(response)
 
-    @query_params("subject_id", "predicate_id", "object")
+    @query_params("subject_id", "predicate_id", "object_id")
     def add(self, params=None):
-        if len(params) == 0:
+        if len(params) != 3:
             raise ValueError("all parameters must be provided")
         else:
             self.client.backend._append_slash = True
+            params['object'] = {'id': params['object_id'], '_class': 'literal' if params['object_id'][0] == 'L' else 'resource'}
             response = self.client.backend.statements.POST(json=params)
         return OrkgResponse(response)
 
@@ -67,6 +68,13 @@ class StatementsClient(NamespacedClient):
                 raise ValueError("the provided id is not in the graph")
             self.client.backend._append_slash = True
             response = self.client.backend.statements(id).PUT(json=params)
+        return OrkgResponse(response)
+
+    def delete(self, id):
+        if not self.exists(id):
+            raise ValueError("the provided id is not in the graph")
+        self.client.backend._append_slash = True
+        response = self.client.backend.statements(id).DELETE()
         return OrkgResponse(response)
 
     def exists(self, id):
