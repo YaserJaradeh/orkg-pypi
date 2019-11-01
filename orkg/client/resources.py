@@ -75,5 +75,5 @@ class ResourcesClient(NamespacedClient):
         :param id: the id of the resource to check
         :return: true if found, otherwise false
         """
-        return self.by_id(id)[0] == 200
+        return self.by_id(id).succeeded
 

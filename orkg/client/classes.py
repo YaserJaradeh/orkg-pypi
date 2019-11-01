@@ -50,5 +50,5 @@ class ClassesClient(NamespacedClient):
         return OrkgResponse(response)
 
     def exists(self, id):
-        return self.by_id(id)[0] == 200
+        return self.by_id(id).succeeded
 
