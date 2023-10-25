@@ -1,4 +1,4 @@
 # orkg-pypi
-Python package wrapping the ORKG API
+Python Client for the ORKG eco-system
 
-The package is a straightforward implementation of the API described in the [documentation](http://orkg.git.tib.eu/orkg-prototype/api-doc/)
+**NOTE**: this repo is NOT maintained any more visit the new repo [here](https://gitlab.com/TIBHannover/orkg/orkg-pypi)
